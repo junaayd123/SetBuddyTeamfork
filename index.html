@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SetBuddy AI — Team Policy</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0b;
+    --surface: #111113;
+    --border: #1e1e22;
+    --text: #e4e4e7;
+    --muted: #71717a;
+    --accent: #3b82f6;
+    --accent-dim: #1d4ed8;
+    --accent-glow: rgba(59, 130, 246, 0.12);
+    --green: #22c55e;
+    --orange: #f59e0b;
+    --red: #ef4444;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Instrument Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    z-index: 9999;
+  }
+
+  .hero {
+    padding: 80px 24px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .logo {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.15s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.25s; }
+  .section:nth-child(5) { animation-delay: 0.3s; }
+  .section:nth-child(6) { animation-delay: 0.35s; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-glow);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+
+  .section p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+
+  .policy-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .policy-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 14.5px;
+    color: #b4b4bc;
+    line-height: 1.65;
+    transition: border-color 0.2s;
+  }
+
+  .policy-list li:hover {
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+
+  .ordered-list {
+    list-style: none;
+    counter-reset: steps;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ordered-list li {
+    counter-increment: steps;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px 16px 56px;
+    font-size: 14.5px;
+    color: #b4b4bc;
+    line-height: 1.65;
+    position: relative;
+    transition: border-color 0.2s;
+  }
+
+  .ordered-list li:hover {
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+
+  .ordered-list li::before {
+    content: counter(steps);
+    position: absolute;
+    left: 20px;
+    top: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 500;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  .tag-standard { background: rgba(34, 197, 94, 0.1); color: var(--green); border: 1px solid rgba(34, 197, 94, 0.2); }
+  .tag-urgent { background: rgba(245, 158, 11, 0.1); color: var(--orange); border: 1px solid rgba(245, 158, 11, 0.2); }
+
+  .footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .footer p {
+    color: var(--muted);
+    font-size: 13px;
+    font-family: 'JetBrains Mono', monospace;
+    line-height: 1.8;
+  }
+
+  .highlight {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  @media (max-width: 520px) {
+    .hero { padding: 60px 20px 40px; }
+    .container { padding: 0 16px 80px; }
+    .policy-list li, .ordered-list li { padding: 14px 16px; font-size: 14px; }
+    .ordered-list li { padding-left: 48px; }
+  }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="hero">
+  <div class="logo">SetBuddy AI</div>
+  <h1>Team Work Policy</h1>
+  <p class="subtitle">Remote Development Team &bull; Effective March 2026</p>
+</div>
+
+<div class="container">
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>How We Work</h2>
+    </div>
+    <p>SetBuddy is a fully remote team. There is no office and no requirement to be in a specific location. What matters is that work gets done on time and communication stays clear.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>Availability & Communication</h2>
+    </div>
+    <ul class="policy-list">
+      <li>Be reachable on the team's primary channel (Discord/Slack) during your committed hours. You don't need to respond instantly, but aim for <span class="highlight">within 2 hours</span> during those hours.</li>
+      <li>If you're going to be unavailable for a day or more, post a heads-up in the team channel before you go offline. No explanation needed — just a timeline.</li>
+      <li>Weekly check-ins happen <span class="highlight">every Sunday evening</span>. Attendance is expected unless you've communicated in advance. Format: what you did, what's next, what's blocking you.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>Tasks & Deadlines</h2>
+    </div>
+    <ul class="policy-list">
+      <li>Tasks are assigned through the project board (GitHub Projects, Notion, or whatever the team is using). Each task includes a description, priority level, and a due date.</li>
+      <li>Due dates are set collaboratively. If a deadline feels unrealistic, speak up when the task is assigned — not the day it's due. Renegotiating early is fine; missing silently is not.</li>
+      <li>If you're going to miss a deadline, flag it <span class="highlight">at least 24 hours in advance</span> with a revised estimate.</li>
+      <li>Standard turnaround is <span class="tag tag-standard">3–5 days</span> for most tasks. Urgent tasks are marked and should be addressed within <span class="tag tag-urgent">24–48 hrs</span>.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Code & Quality Standards</h2>
+    </div>
+    <ul class="policy-list">
+      <li>All code goes through <span class="highlight">pull requests</span>. No direct pushes to main.</li>
+      <li>PRs need at least one review before merging. Keep PRs small and focused — one feature or fix per PR.</li>
+      <li>Write clear commit messages. If someone reads the log in 6 months, they should understand what changed and why.</li>
+      <li>If you break something, own it and fix it. No blame — just solutions.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>Accountability</h2>
+    </div>
+    <p>This is a small team. Everyone's contribution is visible and everyone's absence is felt.</p>
+    <ol class="ordered-list">
+      <li>Do what you said you'd do, by when you said you'd do it.</li>
+      <li>If you can't, communicate early.</li>
+      <li>If a pattern of missed deadlines or unresponsiveness develops, the team lead will have a direct conversation. If it continues, your role on the project will be reconsidered.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>Respect & Culture</h2>
+    </div>
+    <ul class="policy-list">
+      <li>Disagree openly, but never personally. Critique the code or the idea, not the person.</li>
+      <li>Everyone's time is valuable. Come to meetings prepared. Keep async messages concise.</li>
+      <li>Credit contributions publicly. If someone helped you solve a problem, say so.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>By joining the SetBuddy dev team, you agree to these expectations.<br>Questions? Bring them up in the team channel.</p>
+</div>
+
+</body>
+</html>
