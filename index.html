@@ -54,6 +54,13 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .deadline-banner.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
   }
 
   .deadline-banner-dot {
@@ -102,7 +109,7 @@
 
   /* ---- HERO ---- */
   .hero {
-    padding: 100px 24px 80px;
+    padding: 120px 24px 100px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -135,23 +142,32 @@
   }
 
   .hero h1 {
-    font-size: clamp(36px, 6vw, 56px);
+    font-size: clamp(40px, 6vw, 64px);
     font-weight: 700;
-    letter-spacing: -2px;
-    line-height: 1.08;
-    margin-bottom: 20px;
+    letter-spacing: -2.5px;
+    line-height: 1.06;
+    margin-bottom: 24px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  .hero h1 span {
-    color: var(--accent);
-  }
+  .hero h1 span { color: var(--accent); }
 
   .hero-sub {
     color: var(--muted);
     font-size: 17px;
     max-width: 520px;
-    margin: 0 auto 36px;
+    margin: 0 auto 40px;
     line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
   }
 
   .hero-cta {
@@ -176,7 +192,6 @@
     display: inline-block;
     font-size: 14px;
     color: var(--muted);
-    margin-left: 16px;
     text-decoration: none;
     border-bottom: 1px solid var(--border);
     padding-bottom: 1px;
@@ -189,21 +204,25 @@
   .stats {
     display: flex;
     justify-content: center;
-    gap: 48px;
-    padding: 48px 24px;
+    gap: 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    max-width: 680px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
   .stat {
     text-align: center;
+    flex: 1;
+    padding: 40px 24px;
+    border-right: 1px solid var(--border);
   }
+
+  .stat:last-child { border-right: none; }
 
   .stat-number {
     font-family: 'DM Sans', sans-serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: var(--text);
     letter-spacing: -1px;
@@ -215,20 +234,11 @@
     margin-top: 4px;
   }
 
-  /* ---- SECTIONS ---- */
-  .container {
-    max-width: 680px;
+  /* ---- LAYOUT ---- */
+  .wide-container {
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 0 24px;
-  }
-
-  .content-section {
-    padding: 72px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .content-section:last-of-type {
-    border-bottom: none;
+    padding: 0 40px;
   }
 
   .section-label {
@@ -241,65 +251,134 @@
     margin-bottom: 16px;
   }
 
-  .content-section h2 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    margin-bottom: 16px;
-    line-height: 1.2;
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1080px;
+    margin: 0 auto;
   }
 
-  .content-section p {
+  /* ---- WHO WE ARE (side-by-side) ---- */
+  .who-section { padding: 80px 0; }
+
+  .who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .who-left h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .who-left p {
     color: var(--muted);
     font-size: 15px;
     line-height: 1.7;
+  }
+
+  .who-right {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+  }
+
+  .who-right p {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .who-right-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     margin-bottom: 12px;
   }
 
-  .content-section p:last-child { margin-bottom: 0; }
+  /* ---- WHY JOIN (4-col) ---- */
+  .why-section { padding: 80px 0; }
 
-  /* ---- WHY JOIN CARDS ---- */
+  .why-header {
+    margin-bottom: 32px;
+  }
+
+  .why-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
   .perks-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 12px;
-    margin-top: 24px;
   }
 
   .perk {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 10px;
-    padding: 20px;
-    transition: border-color 0.2s;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
   }
 
-  .perk:hover { border-color: var(--border-hover); }
-
-  .perk-icon {
-    font-size: 22px;
-    margin-bottom: 10px;
+  .perk:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
   }
 
-  .perk h3 {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 6px;
+  .perk-icon { font-size: 24px; margin-bottom: 12px; }
+  .perk h3 { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+  .perk p { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 0; }
+
+  /* ---- OPEN ROLES (sidebar + roles) ---- */
+  .roles-section { padding: 80px 0; }
+
+  .roles-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 48px;
+    align-items: start;
   }
 
-  .perk p {
-    font-size: 13px;
+  .roles-sidebar {
+    position: sticky;
+    top: 60px;
+  }
+
+  .roles-sidebar h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .roles-sidebar p {
     color: var(--muted);
-    line-height: 1.55;
-    margin-bottom: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
+
+  .roles-sidebar .hero-cta { font-size: 13px; padding: 10px 20px; }
 
   /* ---- ROLE GROUPS ---- */
   .role-groups {
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-top: 24px;
   }
 
   .role-group {
@@ -333,11 +412,7 @@
   .role-group-icon.mkt { background: rgba(59, 130, 246, 0.12); }
   .role-group-icon.res { background: rgba(34, 197, 94, 0.12); }
 
-  .role-group-title {
-    font-size: 16px;
-    font-weight: 700;
-    letter-spacing: -0.3px;
-  }
+  .role-group-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; }
 
   .role-group-count {
     font-family: 'DM Sans', sans-serif;
@@ -349,10 +424,7 @@
     border-radius: 10px;
   }
 
-  .role-group-roles {
-    display: flex;
-    flex-direction: column;
-  }
+  .role-group-roles { display: flex; flex-direction: column; }
 
   .role-item {
     border-bottom: 1px solid var(--border);
@@ -368,33 +440,20 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 24px;
-    gap: 12px;
+    gap: 8px;
     user-select: none;
   }
 
-  .role-item-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-  }
+  .role-item-left { display: flex; align-items: center; gap: 10px; flex: 1; }
 
-  .role-item-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
+  .role-item-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
 
   .dot-eng { background: var(--accent); }
   .dot-ops { background: var(--purple); }
   .dot-mkt { background: var(--blue); }
   .dot-res { background: var(--green); }
 
-  .role-item-name {
-    font-size: 14.5px;
-    font-weight: 600;
-  }
+  .role-item-name { font-size: 14.5px; font-weight: 600; }
 
   .role-item-chevron {
     font-size: 13px;
@@ -403,9 +462,7 @@
     flex-shrink: 0;
   }
 
-  .role-item.open .role-item-chevron {
-    transform: rotate(90deg);
-  }
+  .role-item.open .role-item-chevron { transform: rotate(90deg); }
 
   .role-item-detail {
     max-height: 0;
@@ -413,62 +470,54 @@
     transition: max-height 0.35s ease;
   }
 
-  .role-item.open .role-item-detail {
-    max-height: 600px;
-  }
+  .role-item.open .role-item-detail { max-height: 600px; }
 
-  .role-item.filled {
-    cursor: default;
-    opacity: 0.5;
-  }
+  .role-item.filled { cursor: default; opacity: 0.5; }
+  .role-item.filled:hover { background: transparent; }
+  .role-item.filled .role-item-chevron { display: none; }
 
-  .role-item.filled:hover {
-    background: transparent;
-  }
-
-  .role-item.filled .role-item-chevron {
-    display: none;
+  /* ---- BADGES ---- */
+  .role-filled-badge, .role-low-slots, .role-closing, .role-new, .role-vital {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
   }
 
   .role-filled-badge {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
     color: var(--muted);
     background: var(--surface-2);
     border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 4px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    flex-shrink: 0;
   }
 
   .role-low-slots {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
     color: #e8512d;
     background: rgba(232, 81, 45, 0.1);
     border: 1px solid rgba(232, 81, 45, 0.25);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
   }
 
   .role-closing {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
     color: #ef4444;
     background: rgba(239, 68, 68, 0.1);
     border: 1px solid rgba(239, 68, 68, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
     animation: pulse-urgency 2s ease-in-out infinite;
+  }
+
+  .role-new {
+    color: #22c55e;
+    background: rgba(34, 197, 94, 0.1);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+  }
+
+  .role-vital {
+    color: #8b8cf8;
+    background: rgba(139, 140, 248, 0.1);
+    border: 1px solid rgba(139, 140, 248, 0.2);
   }
 
   @keyframes pulse-urgency {
@@ -476,35 +525,7 @@
     50% { opacity: 0.6; }
   }
 
-  .role-new {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    color: #22c55e;
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
-  }
-
-  .role-vital {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    color: #8b8cf8;
-    background: rgba(139, 140, 248, 0.1);
-    border: 1px solid rgba(139, 140, 248, 0.2);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
-    flex-shrink: 0;
-  }
-
-  .role-item-detail-inner {
-    padding: 0 24px 20px 41px;
-  }
+  .role-item-detail-inner { padding: 0 24px 20px 41px; }
 
   .role-item-detail-inner p {
     font-size: 13.5px;
@@ -533,40 +554,36 @@
   }
 
   .role-item-detail-inner ul li::before {
-    content: '—';
+    content: '\2014';
     position: absolute;
     left: 0;
     color: var(--muted);
   }
 
-  /* ---- HOW WE WORK ---- */
-  .policy-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
+  /* ---- TECH + HOW WE WORK (two-col) ---- */
+  .tech-work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    padding: 80px 0;
   }
 
-  .policy-list li {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 16px 20px;
+  .tech-col h2, .work-col h2 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .tech-col p, .work-col p {
+    color: var(--muted);
     font-size: 14px;
-    color: #b4b4bc;
-    line-height: 1.6;
+    line-height: 1.7;
+    margin-bottom: 16px;
   }
 
-  .highlight { color: var(--text); font-weight: 500; }
-
-  /* ---- TECH STACK ---- */
-  .stack-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-  }
+  .stack-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
 
   .stack-tag {
     font-family: 'DM Sans', sans-serif;
@@ -578,10 +595,57 @@
     color: var(--muted);
   }
 
+  /* ---- POLICY (alternating rows) ---- */
+  .policy-sections { padding: 0 0 80px; }
+
+  .policy-row {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 48px;
+    padding: 48px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .policy-row:last-child { border-bottom: none; }
+
+  .policy-row.flipped { grid-template-columns: 1fr 300px; }
+  .policy-row.flipped .policy-label-col { order: 2; }
+  .policy-row.flipped .policy-content-col { order: 1; }
+
+  .policy-label-col h2 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+
+  .policy-label-col p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+  .policy-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .policy-list li {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: #b4b4bc;
+    line-height: 1.6;
+  }
+
+  .highlight { color: var(--text); font-weight: 500; }
+
   /* ---- CTA ---- */
   .cta-section {
     text-align: center;
-    padding: 80px 24px;
+    padding: 100px 24px;
     position: relative;
     overflow: hidden;
   }
@@ -599,17 +663,13 @@
   }
 
   .cta-section h2 {
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: 12px;
   }
 
-  .cta-section p {
-    color: var(--muted);
-    font-size: 15px;
-    margin-bottom: 32px;
-  }
+  .cta-section p { color: var(--muted); font-size: 15px; margin-bottom: 32px; }
 
   .cta-btn {
     display: inline-block;
@@ -624,10 +684,7 @@
     transition: background 0.2s, transform 0.2s;
   }
 
-  .cta-btn:hover {
-    background: var(--accent-dim);
-    transform: translateY(-1px);
-  }
+  .cta-btn:hover { background: var(--accent-dim); transform: translateY(-1px); }
 
   /* ---- FOOTER ---- */
   .footer {
@@ -636,24 +693,29 @@
     border-top: 1px solid var(--border);
   }
 
-  .footer p {
-    color: var(--muted);
-    font-size: 12px;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
+  .footer p { color: var(--muted); font-size: 12px; font-family: 'DM Sans', sans-serif; }
+  .footer a { color: var(--accent); text-decoration: none; }
 
   /* ---- RESPONSIVE ---- */
+  @media (max-width: 860px) {
+    .who-grid { grid-template-columns: 1fr; gap: 32px; }
+    .perks-grid { grid-template-columns: 1fr 1fr; }
+    .roles-layout { grid-template-columns: 1fr; gap: 32px; }
+    .roles-sidebar { position: static; }
+    .tech-work-grid { grid-template-columns: 1fr; gap: 48px; }
+    .policy-row, .policy-row.flipped { grid-template-columns: 1fr; gap: 20px; }
+    .policy-row.flipped .policy-label-col,
+    .policy-row.flipped .policy-content-col { order: 0; }
+    .wide-container { padding: 0 24px; }
+  }
+
   @media (max-width: 560px) {
-    .hero { padding: 72px 20px 56px; }
-    .stats { gap: 28px; }
-    .stat-number { font-size: 22px; }
+    .hero { padding: 80px 20px 64px; }
+    .stats { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 24px; }
+    .stat:last-child { border-bottom: none; }
     .perks-grid { grid-template-columns: 1fr; }
-    .hero-secondary { display: block; margin: 16px auto 0; }
+    .hero-actions { flex-direction: column; }
     .role-item-header { padding: 14px 16px; }
     .role-item-detail-inner { padding: 0 16px 18px 33px; }
     .role-group-header { padding: 16px; }
@@ -675,8 +737,10 @@
   <div class="hero-badge">We're hiring — 14 open roles across 4 teams</div>
   <h1>Help us build the<br><span>AI coach everyone deserves</span></h1>
   <p class="hero-sub">SetBuddy uses AI pose detection to watch your form and tell you what to fix — in real time. We've built the prototype. Now we need a team to make it real.</p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKmFokrMa36mESzjZ5wDr5OENixbp4PKAibIKXS-_EQ6Ea7g/viewform" target="_blank" class="hero-cta">Apply Now</a>
-  <a href="https://play.google.com/store/apps/details?id=com.hassanfak.setbuddy" target="_blank" class="hero-secondary">View on Google Play &darr;</a>
+  <div class="hero-actions">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKmFokrMa36mESzjZ5wDr5OENixbp4PKAibIKXS-_EQ6Ea7g/viewform" target="_blank" class="hero-cta">Apply Now</a>
+    <a href="https://play.google.com/store/apps/details?id=com.hassanfak.setbuddy" target="_blank" class="hero-secondary">View on Google Play &darr;</a>
+  </div>
 </div>
 
 <!-- STATS -->
@@ -695,20 +759,32 @@
   </div>
 </div>
 
-<div class="container">
-
-  <!-- WHO WE ARE -->
-  <div class="content-section">
+<!-- WHO WE ARE -->
+<div class="wide-container">
+  <div class="who-section">
     <div class="section-label">Who We Are</div>
-    <h2>A small team with a shipped product</h2>
-    <p>SetBuddy AI started as a solo project — built from scratch, launched on Google Play, and demoed to a U.S. congresswoman through the Congressional App Challenge. The core tech works: film your set, and the AI analyzes your form using TensorFlow and MediaPipe pose detection.</p>
-    <p>But a prototype isn't a product. We need engineers to build out the full platform, researchers to define what "bad form" actually means biomechanically, and marketers to get it in front of the people who need it. That's where you come in.</p>
+    <div class="who-grid">
+      <div class="who-left">
+        <h2>A small team with a shipped product</h2>
+        <p>SetBuddy AI started as a solo project — built from scratch, launched on Google Play, and demoed to a U.S. congresswoman through the Congressional App Challenge. The core tech works: film your set, and the AI analyzes your form using TensorFlow and MediaPipe pose detection.</p>
+      </div>
+      <div class="who-right">
+        <div class="who-right-label">What's Next</div>
+        <p>A prototype isn't a product. We need engineers to build out the full platform, researchers to define what "bad form" actually means biomechanically, and marketers to get it in front of the people who need it. That's where you come in.</p>
+      </div>
+    </div>
   </div>
+</div>
 
-  <!-- WHY JOIN -->
-  <div class="content-section">
-    <div class="section-label">Why Join</div>
-    <h2>What you get out of this</h2>
+<hr class="section-divider">
+
+<!-- WHY JOIN -->
+<div class="wide-container">
+  <div class="why-section">
+    <div class="why-header">
+      <div class="section-label">Why Join</div>
+      <h2>What you get out of this</h2>
+    </div>
     <div class="perks-grid">
       <div class="perk">
         <div class="perk-icon">&#9889;</div>
@@ -732,434 +808,465 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- OPEN ROLES -->
-  <div class="content-section">
+<hr class="section-divider">
+
+<!-- OPEN ROLES -->
+<div class="wide-container">
+  <div class="roles-section">
     <div class="section-label">Open Roles</div>
-    <h2>We're looking for 14 roles across 4 teams</h2>
-    <p>Click any role to see what you'd be assigned to do.</p>
-
-    <div class="role-groups">
-
-      <!-- SOFTWARE -->
-      <div class="role-group">
-        <div class="role-group-header">
-          <div class="role-group-icon eng">&#128187;</div>
-          <div class="role-group-title">Software</div>
-          <div class="role-group-count">2 roles</div>
-        </div>
-        <div class="role-group-roles">
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-eng"></div>
-                <div class="role-item-name">Team Lead</div>
-              </div>
-              <span class="role-vital">Vital</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You own the technical direction of SetBuddy's codebase and coordinate the engineering team's output. You're the bridge between what needs to get built and how it gets built.</p>
-                <ul>
-                  <li>Define the app architecture and make final technical decisions on frameworks, patterns, and infrastructure</li>
-                  <li>Break down product goals into actionable engineering tasks and assign them across the software team</li>
-                  <li>Review all pull requests and enforce code quality standards before anything merges to main</li>
-                  <li>Run weekly engineering syncs, unblock teammates, and escalate risks to the Project Lead early</li>
-                  <li>Maintain the technical roadmap and ensure sprint commitments align with project timelines</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-eng"></div>
-                <div class="role-item-name">Software Engineer</div>
-              </div>
-              <span class="role-low-slots">Limited</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You build and ship features on the SetBuddy app. You work directly with the codebase every week — writing code, fixing bugs, and improving the product for real users.</p>
-                <ul>
-                  <li>Develop new features in React Native, Python, or the AI pipeline based on assigned tasks from the project board</li>
-                  <li>Write clean, well-documented code and submit focused pull requests for review</li>
-                  <li>Investigate and fix bugs reported by users or caught in testing</li>
-                  <li>Collaborate with the Research team to integrate biomechanical parameters into the pose detection system</li>
-                  <li>Participate in code reviews and weekly engineering check-ins</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="roles-layout">
+      <div class="roles-sidebar">
+        <h2>14 roles across 4 teams</h2>
+        <p>Click any role to see what you'd be assigned to do. Some roles have limited availability — don't wait.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeKmFokrMa36mESzjZ5wDr5OENixbp4PKAibIKXS-_EQ6Ea7g/viewform" target="_blank" class="hero-cta">Apply Now</a>
       </div>
+      <div class="role-groups">
 
-      <!-- OPERATIONS -->
-      <div class="role-group">
-        <div class="role-group-header">
-          <div class="role-group-icon ops">&#9881;&#65039;</div>
-          <div class="role-group-title">Operations</div>
-          <div class="role-group-count">3 open · 1 filled</div>
-        </div>
-        <div class="role-group-roles">
-          <div class="role-item filled">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-ops" style="opacity:0.4"></div>
-                <div class="role-item-name">Project Lead</div>
-              </div>
-              <span class="role-filled-badge">Filled</span>
-            </div>
+        <!-- SOFTWARE -->
+        <div class="role-group">
+          <div class="role-group-header">
+            <div class="role-group-icon eng">&#128187;</div>
+            <div class="role-group-title">Software</div>
+            <div class="role-group-count">2 roles</div>
           </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-ops"></div>
-                <div class="role-item-name">Project Co-Lead</div>
+          <div class="role-group-roles">
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-eng"></div>
+                  <div class="role-item-name">Team Lead</div>
+                </div>
+                <span class="role-vital">Vital</span>
+                <div class="role-item-chevron">&#x276F;</div>
               </div>
-              <span class="role-vital">Vital</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You support the Project Lead and step in when they're unavailable. You help keep day-to-day operations running smoothly across all teams.</p>
-                <ul>
-                  <li>Assist in planning sprints and tracking progress across all teams on the project board</li>
-                  <li>Follow up on overdue tasks and flag missed deadlines before they snowball</li>
-                  <li>Help coordinate cross-team dependencies (e.g., research outputs needed by engineering)</li>
-                  <li>Step into the Project Lead role during absences with full decision-making authority</li>
-                  <li>Draft internal updates and maintain documentation on processes and decisions</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-ops"></div>
-                <div class="role-item-name">Interviewer</div>
-              </div>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You run interviews for incoming applicants and help decide who joins the team. You evaluate both skills and reliability — we need people who deliver, not just people who are interested.</p>
-                <ul>
-                  <li>Conduct short interviews with applicants who pass the initial screening round</li>
-                  <li>Evaluate candidates on relevant skills, communication, and follow-through potential</li>
-                  <li>Provide structured feedback and a hire/no-hire recommendation for each candidate</li>
-                  <li>Coordinate interview scheduling with candidates and the operations team</li>
-                  <li>Help refine the interview process based on what's working and what's not</li>
-                </ul>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You own the technical direction of SetBuddy's codebase and coordinate the engineering team's output. You're the bridge between what needs to get built and how it gets built.</p>
+                  <ul>
+                    <li>Define the app architecture and make final technical decisions on frameworks, patterns, and infrastructure</li>
+                    <li>Break down product goals into actionable engineering tasks and assign them across the software team</li>
+                    <li>Review all pull requests and enforce code quality standards before anything merges to main</li>
+                    <li>Run weekly engineering syncs, unblock teammates, and escalate risks to the Project Lead early</li>
+                    <li>Maintain the technical roadmap and ensure sprint commitments align with project timelines</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-ops"></div>
-                <div class="role-item-name">Scouter</div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-eng"></div>
+                  <div class="role-item-name">Software Engineer</div>
+                </div>
+                <span class="role-low-slots">Limited</span>
+                <div class="role-item-chevron">&#x276F;</div>
               </div>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You proactively find and reach out to potential team members. Instead of waiting for applications, you go find the right people in communities, schools, and online spaces.</p>
-                <ul>
-                  <li>Identify potential candidates in Discord servers, LinkedIn, university groups, and tech communities</li>
-                  <li>Send personalized outreach messages that explain what SetBuddy is and why someone should join</li>
-                  <li>Track outreach efforts and conversion rates — who you contacted, who responded, who applied</li>
-                  <li>Collaborate with the Interviewer to hand off qualified leads smoothly</li>
-                  <li>Report weekly on pipeline health: how many prospects, how many converted, where the gaps are</li>
-                </ul>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You build and ship features on the SetBuddy app. You work directly with the codebase every week — writing code, fixing bugs, and improving the product for real users.</p>
+                  <ul>
+                    <li>Develop new features in React Native, Python, or the AI pipeline based on assigned tasks from the project board</li>
+                    <li>Write clean, well-documented code and submit focused pull requests for review</li>
+                    <li>Investigate and fix bugs reported by users or caught in testing</li>
+                    <li>Collaborate with the Research team to integrate biomechanical parameters into the pose detection system</li>
+                    <li>Participate in code reviews and weekly engineering check-ins</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- OPERATIONS -->
+        <div class="role-group">
+          <div class="role-group-header">
+            <div class="role-group-icon ops">&#9881;&#65039;</div>
+            <div class="role-group-title">Operations</div>
+            <div class="role-group-count">3 open · 1 filled</div>
+          </div>
+          <div class="role-group-roles">
+            <div class="role-item filled">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-ops" style="opacity:0.4"></div>
+                  <div class="role-item-name">Project Lead</div>
+                </div>
+                <span class="role-filled-badge">Filled</span>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-ops"></div>
+                  <div class="role-item-name">Project Co-Lead</div>
+                </div>
+                <span class="role-vital">Vital</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You support the Project Lead and step in when they're unavailable. You help keep day-to-day operations running smoothly across all teams.</p>
+                  <ul>
+                    <li>Assist in planning sprints and tracking progress across all teams on the project board</li>
+                    <li>Follow up on overdue tasks and flag missed deadlines before they snowball</li>
+                    <li>Help coordinate cross-team dependencies (e.g., research outputs needed by engineering)</li>
+                    <li>Step into the Project Lead role during absences with full decision-making authority</li>
+                    <li>Draft internal updates and maintain documentation on processes and decisions</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-ops"></div>
+                  <div class="role-item-name">Interviewer</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You run interviews for incoming applicants and help decide who joins the team. You evaluate both skills and reliability — we need people who deliver, not just people who are interested.</p>
+                  <ul>
+                    <li>Conduct short interviews with applicants who pass the initial screening round</li>
+                    <li>Evaluate candidates on relevant skills, communication, and follow-through potential</li>
+                    <li>Provide structured feedback and a hire/no-hire recommendation for each candidate</li>
+                    <li>Coordinate interview scheduling with candidates and the operations team</li>
+                    <li>Help refine the interview process based on what's working and what's not</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-ops"></div>
+                  <div class="role-item-name">Scouter</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You proactively find and reach out to potential team members. Instead of waiting for applications, you go find the right people in communities, schools, and online spaces.</p>
+                  <ul>
+                    <li>Identify potential candidates in Discord servers, LinkedIn, university groups, and tech communities</li>
+                    <li>Send personalized outreach messages that explain what SetBuddy is and why someone should join</li>
+                    <li>Track outreach efforts and conversion rates — who you contacted, who responded, who applied</li>
+                    <li>Collaborate with the Interviewer to hand off qualified leads smoothly</li>
+                    <li>Report weekly on pipeline health: how many prospects, how many converted, where the gaps are</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MARKETING -->
+        <div class="role-group">
+          <div class="role-group-header">
+            <div class="role-group-icon mkt">&#128227;</div>
+            <div class="role-group-title">Marketing</div>
+            <div class="role-group-count">7 roles</div>
+          </div>
+          <div class="role-group-roles">
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Team Lead</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You own the marketing strategy and coordinate the entire content pipeline. You decide what gets posted, when, and where — and you make sure the team hits its weekly quotas.</p>
+                  <ul>
+                    <li>Define the content calendar and assign weekly tasks to Scriptors, Designers, Videographers, and the Editor</li>
+                    <li>Set and enforce the marketing quota: 1 image post/week, 2 posts/week total, with video and image designations</li>
+                    <li>Manage the team's 3 pinned images and 1 pinned video across social platforms</li>
+                    <li>Review all content before it goes live — approve copy, visuals, and messaging</li>
+                    <li>Track engagement metrics and adjust strategy based on what's actually driving downloads</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Scriptor</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You write the words that get people to care about SetBuddy. Captions, scripts, ad copy, landing page text — if it's written content going out to the public, it starts with you.</p>
+                  <ul>
+                    <li>Write captions and copy for all social media posts (image and video)</li>
+                    <li>Draft scripts for short-form video content (Reels, TikToks, YouTube Shorts)</li>
+                    <li>Develop messaging angles that resonate with lifters, coaches, and fitness beginners</li>
+                    <li>Collaborate with the Videographer and Graphic Designer to align visuals with copy</li>
+                    <li>Deliver drafts on time for the Team Lead's review before scheduled post dates</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Outreach</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You connect SetBuddy with fitness communities, influencers, and potential partners. You're the person who gets us in the room — or in the DMs — with people who can amplify what we're building.</p>
+                  <ul>
+                    <li>Identify and reach out to fitness influencers, gym pages, and content creators for collaborations</li>
+                    <li>Build relationships with fitness communities on Reddit, Discord, Instagram, and TikTok</li>
+                    <li>Coordinate cross-promotions and partnerships that drive app downloads</li>
+                    <li>Track outreach conversations and report on partnership pipeline weekly</li>
+                    <li>Work with the Team Lead to align outreach targets with the overall growth strategy</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Videographer</div>
+                </div>
+                <span class="role-new">New</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You create video content that shows SetBuddy in action. Demos, tutorials, promo clips — you shoot or screen-record it, and you make it look good enough that people stop scrolling.</p>
+                  <ul>
+                    <li>Produce short-form video content (15–60 seconds) for TikTok, Reels, and YouTube Shorts</li>
+                    <li>Record app demos and screen captures showing SetBuddy's real-time form detection</li>
+                    <li>Work with the Scriptor to bring written scripts to life visually</li>
+                    <li>Deliver raw and edited footage on schedule for the Editor and Team Lead to review</li>
+                    <li>Maintain a consistent visual style across all video content</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Graphic Designer</div>
+                </div>
+                <span class="role-low-slots">Limited</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You design the visual assets that represent SetBuddy across all platforms — social posts, banners, app store graphics, and anything else that needs to look sharp and on-brand.</p>
+                  <ul>
+                    <li>Create image posts and graphics for the weekly content calendar (minimum 1 image post/week)</li>
+                    <li>Design pinned images for social profiles that communicate what SetBuddy is at a glance</li>
+                    <li>Build and maintain a visual brand guide — colors, typography, layout patterns</li>
+                    <li>Produce thumbnails, banners, and promotional assets as needed by the team</li>
+                    <li>Collaborate with the Scriptor and Videographer to keep visual language consistent</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-mkt"></div>
+                  <div class="role-item-name">Editor</div>
+                </div>
+                <span class="role-low-slots">Limited</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You're the final set of eyes before anything goes live. You edit video footage, polish graphics, and make sure every piece of content meets quality standards before it's published.</p>
+                  <ul>
+                    <li>Edit and finalize all video content — cuts, transitions, captions, sound, and pacing</li>
+                    <li>Quality-check image posts and graphics for consistency, typos, and brand alignment</li>
+                    <li>Prepare final assets in the correct formats and dimensions for each platform</li>
+                    <li>Work closely with the Team Lead to meet publishing deadlines</li>
+                    <li>Flag quality issues early and suggest improvements to raw content from the team</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESEARCH -->
+        <div class="role-group">
+          <div class="role-group-header">
+            <div class="role-group-icon res">&#128300;</div>
+            <div class="role-group-title">Research</div>
+            <div class="role-group-count">2 roles</div>
+          </div>
+          <div class="role-group-roles">
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-res"></div>
+                  <div class="role-item-name">Team Lead (Research)</div>
+                </div>
+                <span class="role-closing">Closing Soon</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You lead the research effort that defines what "good form" and "bad form" actually mean — biomechanically and algorithmically. Your work directly shapes what the AI detects and flags.</p>
+                  <ul>
+                    <li>Define the biomechanical parameters for each supported exercise — joint angles, thresholds, and risk zones</li>
+                    <li>Review academic literature on exercise science, kinesiology, and injury prevention to inform the model</li>
+                    <li>Coordinate with the Research Consultant to validate findings and ensure accuracy across body types</li>
+                    <li>Translate research outputs into specs the Software team can implement in the pose detection pipeline</li>
+                    <li>Present research findings at weekly check-ins and flag any areas where data is insufficient</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="role-item" onclick="toggleRole(this)">
+              <div class="role-item-header">
+                <div class="role-item-left">
+                  <div class="role-item-dot dot-res"></div>
+                  <div class="role-item-name">Research Consultant</div>
+                </div>
+                <span class="role-low-slots">Limited</span>
+                <div class="role-item-chevron">&#x276F;</div>
+              </div>
+              <div class="role-item-detail">
+                <div class="role-item-detail-inner">
+                  <p>You provide specialized biomechanical and kinesiology expertise to validate the research team's work. You ensure the form detection parameters are grounded in real science, not guesswork.</p>
+                  <ul>
+                    <li>Review and validate the joint angle thresholds and safety parameters defined by the Research Lead</li>
+                    <li>Advise on edge cases — how form standards vary across body types, mobility levels, and experience</li>
+                    <li>Provide feedback on whether the AI's form assessments align with accepted exercise science</li>
+                    <li>Suggest additional exercises or movements to add to the detection library based on demand and risk</li>
+                    <li>Be available for async consultations and attend check-ins when research items are on the agenda</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-
-      <!-- MARKETING -->
-      <div class="role-group">
-        <div class="role-group-header">
-          <div class="role-group-icon mkt">&#128227;</div>
-          <div class="role-group-title">Marketing</div>
-          <div class="role-group-count">7 roles</div>
-        </div>
-        <div class="role-group-roles">
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Team Lead</div>
-              </div>
-              <span class="role-new">New</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You own the marketing strategy and coordinate the entire content pipeline. You decide what gets posted, when, and where — and you make sure the team hits its weekly quotas.</p>
-                <ul>
-                  <li>Define the content calendar and assign weekly tasks to Scriptors, Designers, Videographers, and the Editor</li>
-                  <li>Set and enforce the marketing quota: 1 image post/week, 2 posts/week total, with video and image designations</li>
-                  <li>Manage the team's 3 pinned images and 1 pinned video across social platforms</li>
-                  <li>Review all content before it goes live — approve copy, visuals, and messaging</li>
-                  <li>Track engagement metrics and adjust strategy based on what's actually driving downloads</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Scriptor</div>
-              </div>
-              <span class="role-new">New</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You write the words that get people to care about SetBuddy. Captions, scripts, ad copy, landing page text — if it's written content going out to the public, it starts with you.</p>
-                <ul>
-                  <li>Write captions and copy for all social media posts (image and video)</li>
-                  <li>Draft scripts for short-form video content (Reels, TikToks, YouTube Shorts)</li>
-                  <li>Develop messaging angles that resonate with lifters, coaches, and fitness beginners</li>
-                  <li>Collaborate with the Videographer and Graphic Designer to align visuals with copy</li>
-                  <li>Deliver drafts on time for the Team Lead's review before scheduled post dates</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Outreach</div>
-              </div>
-              <span class="role-new">New</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You connect SetBuddy with fitness communities, influencers, and potential partners. You're the person who gets us in the room — or in the DMs — with people who can amplify what we're building.</p>
-                <ul>
-                  <li>Identify and reach out to fitness influencers, gym pages, and content creators for collaborations</li>
-                  <li>Build relationships with fitness communities on Reddit, Discord, Instagram, and TikTok</li>
-                  <li>Coordinate cross-promotions and partnerships that drive app downloads</li>
-                  <li>Track outreach conversations and report on partnership pipeline weekly</li>
-                  <li>Work with the Team Lead to align outreach targets with the overall growth strategy</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Videographer</div>
-              </div>
-              <span class="role-new">New</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You create video content that shows SetBuddy in action. Demos, tutorials, promo clips — you shoot or screen-record it, and you make it look good enough that people stop scrolling.</p>
-                <ul>
-                  <li>Produce short-form video content (15–60 seconds) for TikTok, Reels, and YouTube Shorts</li>
-                  <li>Record app demos and screen captures showing SetBuddy's real-time form detection</li>
-                  <li>Work with the Scriptor to bring written scripts to life visually</li>
-                  <li>Deliver raw and edited footage on schedule for the Editor and Team Lead to review</li>
-                  <li>Maintain a consistent visual style across all video content</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Graphic Designer</div>
-              </div>
-              <span class="role-new">New</span>
-              <span class="role-low-slots">Limited</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You design the visual assets that represent SetBuddy across all platforms — social posts, banners, app store graphics, and anything else that needs to look sharp and on-brand.</p>
-                <ul>
-                  <li>Create image posts and graphics for the weekly content calendar (minimum 1 image post/week)</li>
-                  <li>Design pinned images for social profiles that communicate what SetBuddy is at a glance</li>
-                  <li>Build and maintain a visual brand guide — colors, typography, layout patterns</li>
-                  <li>Produce thumbnails, banners, and promotional assets as needed by the team</li>
-                  <li>Collaborate with the Scriptor and Videographer to keep visual language consistent</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-mkt"></div>
-                <div class="role-item-name">Editor</div>
-              </div>
-              <span class="role-new">New</span>
-              <span class="role-low-slots">Limited</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You're the final set of eyes before anything goes live. You edit video footage, polish graphics, and make sure every piece of content meets quality standards before it's published.</p>
-                <ul>
-                  <li>Edit and finalize all video content — cuts, transitions, captions, sound, and pacing</li>
-                  <li>Quality-check image posts and graphics for consistency, typos, and brand alignment</li>
-                  <li>Prepare final assets in the correct formats and dimensions for each platform</li>
-                  <li>Work closely with the Team Lead to meet publishing deadlines</li>
-                  <li>Flag quality issues early and suggest improvements to raw content from the team</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RESEARCH -->
-      <div class="role-group">
-        <div class="role-group-header">
-          <div class="role-group-icon res">&#128300;</div>
-          <div class="role-group-title">Research</div>
-          <div class="role-group-count">2 roles</div>
-        </div>
-        <div class="role-group-roles">
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-res"></div>
-                <div class="role-item-name">Team Lead (Research)</div>
-              </div>
-              <span class="role-closing">Closing Soon</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You lead the research effort that defines what "good form" and "bad form" actually mean — biomechanically and algorithmically. Your work directly shapes what the AI detects and flags.</p>
-                <ul>
-                  <li>Define the biomechanical parameters for each supported exercise — joint angles, thresholds, and risk zones</li>
-                  <li>Review academic literature on exercise science, kinesiology, and injury prevention to inform the model</li>
-                  <li>Coordinate with the Research Consultant to validate findings and ensure accuracy across body types</li>
-                  <li>Translate research outputs into specs the Software team can implement in the pose detection pipeline</li>
-                  <li>Present research findings at weekly check-ins and flag any areas where data is insufficient</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="role-item" onclick="toggleRole(this)">
-            <div class="role-item-header">
-              <div class="role-item-left">
-                <div class="role-item-dot dot-res"></div>
-                <div class="role-item-name">Research Consultant</div>
-              </div>
-              <span class="role-low-slots">Limited</span>
-              <div class="role-item-chevron">&#x276F;</div>
-            </div>
-            <div class="role-item-detail">
-              <div class="role-item-detail-inner">
-                <p>You provide specialized biomechanical and kinesiology expertise to validate the research team's work. You ensure the form detection parameters are grounded in real science, not guesswork.</p>
-                <ul>
-                  <li>Review and validate the joint angle thresholds and safety parameters defined by the Research Lead</li>
-                  <li>Advise on edge cases — how form standards vary across body types, mobility levels, and experience</li>
-                  <li>Provide feedback on whether the AI's form assessments align with accepted exercise science</li>
-                  <li>Suggest additional exercises or movements to add to the detection library based on demand and risk</li>
-                  <li>Be available for async consultations and attend check-ins when research items are on the agenda</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
+</div>
 
-  <!-- TECH STACK -->
-  <div class="content-section">
-    <div class="section-label">Tech Stack</div>
-    <h2>What we're building with</h2>
-    <div class="stack-tags">
-      <span class="stack-tag">React Native</span>
-      <span class="stack-tag">TensorFlow</span>
-      <span class="stack-tag">MediaPipe</span>
-      <span class="stack-tag">Python</span>
-      <span class="stack-tag">JavaScript</span>
-      <span class="stack-tag">Node.js</span>
-      <span class="stack-tag">OpenCV</span>
-      <span class="stack-tag">Android Studio</span>
-      <span class="stack-tag">Git</span>
+<hr class="section-divider">
+
+<!-- TECH STACK + HOW WE WORK -->
+<div class="wide-container">
+  <div class="tech-work-grid">
+    <div class="tech-col">
+      <div class="section-label">Tech Stack</div>
+      <h2>What we're building with</h2>
+      <p>Our stack is built around mobile AI — real-time pose detection running on-device. If you've worked with any of these, you'll feel at home.</p>
+      <div class="stack-tags">
+        <span class="stack-tag">React Native</span>
+        <span class="stack-tag">TensorFlow</span>
+        <span class="stack-tag">MediaPipe</span>
+        <span class="stack-tag">Python</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Node.js</span>
+        <span class="stack-tag">OpenCV</span>
+        <span class="stack-tag">Android Studio</span>
+        <span class="stack-tag">Git</span>
+      </div>
+    </div>
+    <div class="work-col">
+      <div class="section-label">How We Work</div>
+      <h2>Fully remote, async-first</h2>
+      <p>No office, no location requirements. What matters is that work gets done on time and communication stays clear.</p>
+      <ul class="policy-list">
+        <li>Respond <span class="highlight">within 2 hours</span> during committed hours</li>
+        <li>Weekly check-ins <span class="highlight">every Sunday evening</span></li>
+        <li>Flag missed deadlines <span class="highlight">24 hours in advance</span></li>
+        <li>Standard turnaround: <span class="highlight">3–5 days</span> per task</li>
+      </ul>
     </div>
   </div>
+</div>
 
-  <!-- HOW WE WORK — FULL POLICY -->
-  <div class="content-section">
-    <div class="section-label">01 — How We Work</div>
-    <h2>Fully Remote</h2>
-    <p>SetBuddy is a fully remote team. There is no office and no requirement to be in a specific location. What matters is that work gets done on time and communication stays clear.</p>
+<hr class="section-divider">
+
+<!-- POLICY SECTIONS -->
+<div class="wide-container">
+  <div class="policy-sections">
+    <div class="policy-row">
+      <div class="policy-label-col">
+        <div class="section-label">Tasks & Deadlines</div>
+        <h2>Ship On Time</h2>
+        <p>Deadlines are collaborative. If something's off, say so early — not the day it's due.</p>
+      </div>
+      <div class="policy-content-col">
+        <ul class="policy-list">
+          <li>Tasks are assigned through the project board with a description, priority, and due date.</li>
+          <li>Due dates are set collaboratively. Renegotiating early is fine; missing silently is not.</li>
+          <li>If you're going to miss a deadline, flag it <span class="highlight">at least 24 hours in advance</span> with a revised estimate.</li>
+          <li>Urgent tasks (marked as such) should be addressed within <span class="highlight">24–48 hours</span>.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="policy-row flipped">
+      <div class="policy-label-col">
+        <div class="section-label">Code & Quality</div>
+        <h2>Keep It Clean</h2>
+        <p>Small PRs, clear commits, one review minimum. No shortcuts.</p>
+      </div>
+      <div class="policy-content-col">
+        <ul class="policy-list">
+          <li>All code goes through <span class="highlight">pull requests</span>. No direct pushes to main.</li>
+          <li>PRs need at least one review before merging. One feature or fix per PR.</li>
+          <li>Write clear commit messages. If someone reads the log in 6 months, they should understand what changed.</li>
+          <li>If you break something, own it and fix it. No blame — just solutions.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="policy-row">
+      <div class="policy-label-col">
+        <div class="section-label">Accountability</div>
+        <h2>Do What You Said You'd Do</h2>
+        <p>Everyone's contribution is visible and everyone's absence is felt.</p>
+      </div>
+      <div class="policy-content-col">
+        <ul class="policy-list">
+          <li><span class="highlight">1.</span> Do what you said you'd do, by when you said you'd do it.</li>
+          <li><span class="highlight">2.</span> If you can't, communicate early.</li>
+          <li><span class="highlight">3.</span> If a pattern develops, the team lead will have a direct conversation. If it continues, your role will be reconsidered.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="policy-row flipped">
+      <div class="policy-label-col">
+        <div class="section-label">Respect & Culture</div>
+        <h2>Build Each Other Up</h2>
+        <p>Critique the code, not the person. Credit contributions publicly.</p>
+      </div>
+      <div class="policy-content-col">
+        <ul class="policy-list">
+          <li>Disagree openly, but never personally. Critique the code or the idea, not the person.</li>
+          <li>Everyone's time is valuable. Come to meetings prepared. Keep async messages concise.</li>
+          <li>Credit contributions publicly. If someone helped you solve a problem, say so.</li>
+        </ul>
+      </div>
+    </div>
   </div>
-
-  <div class="content-section">
-    <div class="section-label">02 — Availability & Communication</div>
-    <h2>Stay Reachable</h2>
-    <ul class="policy-list">
-      <li>Be reachable on the team's primary channel (Discord/Slack) during your committed hours. You don't need to respond instantly, but aim for <span class="highlight">within 2 hours</span> during those hours.</li>
-      <li>If you're going to be unavailable for a day or more, post a heads-up in the team channel before you go offline. No explanation needed — just a timeline.</li>
-      <li>Weekly check-ins happen <span class="highlight">every Sunday evening</span>. Attendance is expected unless you've communicated in advance. Format: what you did, what's next, what's blocking you.</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="section-label">03 — Tasks & Deadlines</div>
-    <h2>Ship On Time</h2>
-    <ul class="policy-list">
-      <li>Tasks are assigned through the project board (GitHub Projects, Notion, or whatever the team is using). Each task includes a description, priority level, and a due date.</li>
-      <li>Due dates are set collaboratively. If a deadline feels unrealistic, speak up when the task is assigned — not the day it's due. Renegotiating early is fine; missing silently is not.</li>
-      <li>If you're going to miss a deadline, flag it <span class="highlight">at least 24 hours in advance</span> with a revised estimate. Things come up — the team just needs to know so work can be redistributed.</li>
-      <li>Standard turnaround is <span class="highlight">3–5 days</span> for most tasks. Urgent tasks (marked as such) should be addressed within <span class="highlight">24–48 hours</span>.</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="section-label">04 — Code & Quality Standards</div>
-    <h2>Keep It Clean</h2>
-    <ul class="policy-list">
-      <li>All code goes through <span class="highlight">pull requests</span>. No direct pushes to main.</li>
-      <li>PRs need at least one review before merging. Keep PRs small and focused — one feature or fix per PR.</li>
-      <li>Write clear commit messages. If someone reads the log in 6 months, they should understand what changed and why.</li>
-      <li>If you break something, own it and fix it. No blame — just solutions.</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="section-label">05 — Accountability</div>
-    <h2>Do What You Said You'd Do</h2>
-    <p>This is a small team. Everyone's contribution is visible and everyone's absence is felt. The expectations are simple:</p>
-    <ul class="policy-list">
-      <li><span class="highlight">1.</span> Do what you said you'd do, by when you said you'd do it.</li>
-      <li><span class="highlight">2.</span> If you can't, communicate early.</li>
-      <li><span class="highlight">3.</span> If a pattern of missed deadlines or unresponsiveness develops, the team lead will have a direct conversation. If it continues, your role on the project will be reconsidered.</li>
-    </ul>
-  </div>
-
-  <div class="content-section">
-    <div class="section-label">06 — Respect & Culture</div>
-    <h2>Build Each Other Up</h2>
-    <ul class="policy-list">
-      <li>Disagree openly, but never personally. Critique the code or the idea, not the person.</li>
-      <li>Everyone's time is valuable. Come to meetings prepared. Keep async messages concise.</li>
-      <li>Credit contributions publicly. If someone helped you solve a problem, say so.</li>
-    </ul>
-  </div>
-
 </div>
 
 <!-- CTA -->
@@ -1198,10 +1305,19 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 60000);
+
+let lastScroll = 0;
+const banner = document.querySelector('.deadline-banner');
+window.addEventListener('scroll', () => {
+  const current = window.scrollY;
+  if (current > lastScroll && current > 60) {
+    banner.classList.add('hidden');
+  } else {
+    banner.classList.remove('hidden');
+  }
+  lastScroll = current;
+});
 </script>
 
 </body>
 </html>
-
-
-
