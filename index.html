@@ -367,6 +367,8 @@
     .apply-grid{grid-template-columns:1fr}
     .apply-note,.apply-main{grid-column:1}
     .apply-note{border-right:none;border-bottom:1px solid var(--line);padding:48px 32px}
+    .pledge{grid-template-columns:1fr;padding-bottom:64px}
+    .legal-callout{flex-direction:column;align-items:flex-start}
   }
   @media(prefers-reduced-motion:reduce){
     *{scroll-behavior:auto}
@@ -394,6 +396,26 @@
   .legal-wrap a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(232,93,24,0.35);transition:border-color .18s}
   .legal-wrap a:hover{border-bottom-color:var(--orange)}
   .legal-back{margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+
+  /* callout linking legal <-> promise pages */
+  .legal-callout{margin:0 0 40px;padding:20px 24px;border:1px solid rgba(232,93,24,0.35);border-radius:12px;background:rgba(232,93,24,0.06);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+  .legal-callout p{margin:0;font-size:14.5px;color:var(--text);max-width:38em}
+  .legal-callout a{white-space:nowrap}
+
+  /* ===== PROMISE (trust) PAGE ===== */
+  #promisePage{display:none}
+  .chip.trust{color:var(--green);border-color:rgba(70,208,127,0.4)}
+  .pledge{max-width:var(--max);margin:0 auto;padding:8px 32px 92px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .pledge-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:36px}
+  .pledge-card h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;letter-spacing:-0.3px;margin-bottom:22px}
+  .pledge-card ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+  .pledge-card li{position:relative;padding-left:26px;font-size:15px;color:var(--muted);line-height:1.6}
+  .pledge-card.yes{border-color:rgba(70,208,127,0.35)}
+  .pledge-card.yes h3{color:var(--green)}
+  .pledge-card.yes li::before{content:"✓";position:absolute;left:0;top:0;color:var(--green);font-weight:700}
+  .pledge-card.no{border-color:rgba(239,87,81,0.35)}
+  .pledge-card.no h3{color:var(--red)}
+  .pledge-card.no li::before{content:"✕";position:absolute;left:0;top:0;color:var(--red);font-weight:700}
 </style>
 </head>
 <body>
@@ -406,6 +428,7 @@
       <a id="lnkHome" class="on" onclick="go('home')">Home</a>
       <a id="lnkPlans" onclick="go('home');setTimeout(function(){var e=document.getElementById('plans');if(e)e.scrollIntoView({behavior:'smooth'});},50)">Plans</a>
       <a id="lnkTeam" onclick="go('team')">Team</a>
+      <a id="lnkPromise" onclick="go('promise')">Our Promise</a>
       <a id="lnkPrivacy" onclick="go('privacy')">Privacy</a>
     </div>
     <a class="nav-cta" href="https://play.google.com/store/apps/details?id=com.hassanfak.setbuddy" target="_blank" rel="noopener">Get the app</a>
@@ -673,6 +696,7 @@
         <div class="fc-h">Contact</div>
         <a href="mailto:setbuddyhelp@gmail.com">setbuddyhelp@gmail.com</a>
         <a onclick="go('team')">Work with us</a>
+        <a onclick="go('promise')">Our Promise</a>
         <a onclick="go('privacy')">Privacy Policy</a>
         <p style="margin-top:14px">Portland, OR · United States</p>
       </div>
@@ -816,11 +840,154 @@
       <div class="foot-col">
         <div class="fc-h">Contact</div>
         <a href="mailto:setbuddyhelp@gmail.com">setbuddyhelp@gmail.com</a>
+        <a onclick="go('promise')">Our Promise</a>
         <a onclick="go('privacy')">Privacy Policy</a>
         <p style="margin-top:14px">Portland, OR · United States</p>
       </div>
     </div>
     <div class="foot-bar"><span>© 2026 SetBuddy</span><span>16 roles · 5 teams · 1 app</span></div>
+  </footer>
+</div>
+
+<!-- promise of privacy  -->
+<div id="promisePage" style="display:none">
+  <section class="team-hero">
+    <div class="team-hero-grid">
+      <div class="th-label reveal">[ our promise ]<br>on your data</div>
+      <div class="th-main reveal">
+        <h1>Your data doesn't leave without your permission.</h1>
+        <!-- yo, hassan or whoevers editing this, please continue editing this page, its kinda unfinished -->
+        <p>Every set you film and every rep SetBuddy scores is yours. This page is the plain-English version of that promise — no clauses, no fine print, just what we actually do (and refuse to do) with your information. The full legal document lives on our <a onclick="go('privacy')" style="color:var(--orange);cursor:pointer;text-decoration:underline">Privacy Policy</a> page if you want the details in writing.</p>
+        <p>We built SetBuddy because we knew people didn't need a coach in the room — and not a company reading over our or your shoulders either. That standard applies to your data the same way it applies to ours.</p>
+        <div class="credit">
+          <span><b>0</b> data sold to advertisers</span>
+          <span><b>100%</b> encrypted in transit &amp; at rest</span>
+          <span>delete your data · anytime, in-app</span>
+        </div>
+        <div class="chip-row" style="margin-top:22px">
+          <span class="chip trust">Never sold</span>
+          <span class="chip trust">Encrypted always</span>
+          <span class="chip trust">You can delete it</span>
+          <span class="chip trust">No hidden trackers</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- trust stats-->
+  <div class="spec">
+    <div class="spec-track">
+      <!-- yo hassan or whoevers editing.. adjust these four stats if theres something more important we need to headline-->
+      <div class="spec-item"><span class="dot"></span>Sold to third parties · zero</div>
+      <div class="spec-item"><span class="dot"></span>Encryption · in transit &amp; at rest</div>
+      <div class="spec-item"><span class="dot"></span>Account deletion · anytime, in-app</div>
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="label reveal">[ the pillars ]</div>
+      <div class="title reveal">Four things that don't change, no matter what.</div>
+    </div>
+    <div class="bento">
+      <div class="tile feature reveal">
+        <!-- EDIT: this is the headline pillar — the one thing you want visitors to remember -->
+        <div class="kicker">01 · the big one</div>
+        <h4>We will never sell your data.</h4>
+        <p>Not to advertisers, not to data brokers, not to anyone. Your workouts, your video, your account — none of it is a product we sell. If that ever changed, it would need your explicit permission first, and not a sneaky line hidden away in a policy update.</p>
+        <!--edited line: , and not a sneaky line hidden away in a policy update.-->
+        <div class="demo-line">
+          <span class="chip trust">No data brokers</span>
+          <span class="chip trust">No ad-network resale</span>
+        </div>
+      </div>
+      <div class="tile reveal">
+        <div class="kicker">02 · encryption</div>
+        <h4>Locked down, always</h4>
+        <p>Your video and account data are encrypted moving to our servers and while they sit there.</p>
+      </div>
+      <div class="tile reveal">
+        <div class="kicker">03 · your control</div>
+        <h4>Delete it whenever you want</h4>
+        <p>One tap in the app removes your account, history, and analysis data from our systems.</p>
+      </div>
+      <div class="tile reveal">
+        <div class="kicker">04 · minimal by design</div>
+        <h4>We only collect what the app needs</h4>
+        <p>Not a single piece of information is sent to us (or taken from you) until you grant us permission to do so.</p>
+      </div>
+      <div class="tile reveal">
+        <div class="kicker">05 · transparency</div>
+        <h4>No surprise clauses</h4>
+        <p>If our policy changes in a way that matters to you, we'll say so plainly in the app.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- what we will and wont do-->
+  <section class="sec">
+    <div class="sec-head">
+      <div class="label reveal">[ in writing ]</div>
+      <div class="title reveal">What that looks like in practice.</div>
+    </div>
+    <div class="pledge">
+      <div class="pledge-card yes reveal">
+        <h3>What we promise</h3>
+        <!-- EDIT: replace with your real commitments -->
+        <ul>
+          <li>Encrypt your data in transit and at rest</li>
+          <li>Let you choose to delete - or keep - your data</li>
+          <li>Tell you plainly if something material changes</li>
+          <li>Only use your video to produce your form analysis</li>
+        </ul>
+      </div>
+      <div class="pledge-card no reveal">
+        <h3>What we'll never do</h3>
+        <!-- EDIT: replace with your real commitments -->
+        <ul>
+          <li>Sell your personal data to advertisers or brokers</li>
+          <li>Share your workout videos publicly without asking</li>
+          <li>Bury policy changes in fine print</li>
+          <li>Collect data we don't need to run the app</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRAIGHT TALK -->
+  <section class="sec">
+    <div class="straight">
+      <div class="st-label reveal">Straight talk:<br><span>it's your data.</span></div>
+      <div class="st-body reveal">
+        <!-- EDIT: personal note, similar tone to the founder note on the Team page -->
+        <p>We're a small team. We're users, not just developers. Let's be real, no one wants to read a privacy policy front-to-back. That's why we'll make our statements as clear as this page.</p>
+        <p>If any of that ever stops being true, we'd rather you catch us on it than find out from a headline.</p>
+        <div class="meta">
+          <span><b>Data sold</b> · never</span>
+          <span><b>Encryption</b> · always on</span>
+          <span><b>Your call</b> · anytime</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSER -->
+  <section class="closer">
+    <div class="closer-inner reveal">
+      <div>
+        <!-- EDIT: closing CTA copy -->
+        <h2>Questions about your data?</h2>
+        <p>Read the full legal policy for the specifics, or email us directly. We're always listening.</p>
+      </div>
+      <div class="closer-act">
+        <a class="btn-primary" onclick="go('privacy')">Read the Privacy Policy →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-bar"><span>© 2026 SetBuddy</span><span>setbuddyhelp@gmail.com · Portland, OR</span></div>
   </footer>
 </div>
 
@@ -832,6 +999,11 @@
       <h1 class="legal-title">Privacy Policy</h1>
       <p class="legal-meta">Effective date: July 16, 2026</p>
       <p class="legal-lead">SetBuddy ("we", "us", "our") provides an AI-powered workout form-analysis app. This policy explains what information we collect, how we use it, and the choices you have. By using SetBuddy you agree to this policy. If you have questions, contact us at <a href="mailto:setbuddyhelp@gmail.com">setbuddyhelp@gmail.com</a>.</p>
+
+      <div class="legal-callout">
+        <p>Prefer the plain-English version? Read our <strong>Promise of Privacy</strong> — the short version of what's below, without the legal phrasing.</p>
+        <a class="btn-ghost" onclick="go('promise')">See our Promise →</a>
+      </div>
 
       <h2>Information we collect</h2>
       <ul>
@@ -895,11 +1067,12 @@
 
 <script>
   function go(page){
-    var home=document.getElementById('homePage'),team=document.getElementById('teamPage'),priv=document.getElementById('privacyPage');
-    var lh=document.getElementById('lnkHome'),lt=document.getElementById('lnkTeam'),lp=document.getElementById('lnkPrivacy');
-    home.style.display='none';team.style.display='none';priv.style.display='none';
-    lh.classList.remove('on');lt.classList.remove('on');lp.classList.remove('on');
+    var home=document.getElementById('homePage'),team=document.getElementById('teamPage'),promise=document.getElementById('promisePage'),priv=document.getElementById('privacyPage');
+    var lh=document.getElementById('lnkHome'),lt=document.getElementById('lnkTeam'),lm=document.getElementById('lnkPromise'),lp=document.getElementById('lnkPrivacy');
+    home.style.display='none';team.style.display='none';promise.style.display='none';priv.style.display='none';
+    lh.classList.remove('on');lt.classList.remove('on');lm.classList.remove('on');lp.classList.remove('on');
     if(page==='team'){team.style.display='block';lt.classList.add('on');history.replaceState(null,'','#team');}
+    else if(page==='promise'){promise.style.display='block';lm.classList.add('on');history.replaceState(null,'','#promise');}
     else if(page==='privacy'){priv.style.display='block';lp.classList.add('on');history.replaceState(null,'','#privacy');}
     else{home.style.display='block';lh.classList.add('on');history.replaceState(null,'','#home');}
     window.scrollTo(0,0);runReveal();
@@ -912,7 +1085,7 @@
     if(!io){io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});}
     els.forEach(function(e){io.observe(e)});
   }
-  (function(){if(location.hash==='#team'){go('team');}else if(location.hash==='#privacy'){go('privacy');}else{runReveal();}})();
+  (function(){if(location.hash==='#team'){go('team');}else if(location.hash==='#promise'){go('promise');}else if(location.hash==='#privacy'){go('privacy');}else{runReveal();}})();
 
   // ===== 3D phone motion =====
   (function(){
@@ -962,7 +1135,7 @@
     }
   })();
 
-  window.addEventListener('hashchange',function(){if(location.hash==='#team')go('team');else if(location.hash==='#privacy')go('privacy');else if(location.hash==='#home')go('home');});
+  window.addEventListener('hashchange',function(){if(location.hash==='#team')go('team');else if(location.hash==='#promise')go('promise');else if(location.hash==='#privacy')go('privacy');else if(location.hash==='#home')go('home');});
 </script>
 </body>
 </html>
